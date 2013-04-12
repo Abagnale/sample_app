@@ -27,4 +27,20 @@ describe "LayoutLinks" do
     response.should have_selector('title', :content => "Inscription")
   end
   
+    it "devrait avoir le bon lien sur le layout" do
+    visit root_path
+    click_link "A Propos"
+    response.should have_selector('title', :content => "About")
+    click_link "Aide"
+    response.should have_selector('title', :content => "Help")
+    click_link "Contact"
+    response.should have_selector('title', :content => "Contact")
+    click_link "Accueil"
+    response.should have_selector('title', :content => "Home")
+    click_link "Inscription"
+    response.should have_selector('title', :content => "Inscription")
+  end
+  
+  
+  
 end
