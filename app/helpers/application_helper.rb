@@ -9,5 +9,5 @@ module ApplicationHelper
 			titre_base + " | " + @titre
 		end
 	end
-
+	
 end
