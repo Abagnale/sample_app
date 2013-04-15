@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+gem 'gravatar_image_tag'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -46,4 +47,5 @@ group :test do
   gem 'rspec'
   gem 'webrat'
   gem 'spork'
+  gem 'factory_girl_rails' , '1.0'
 end
