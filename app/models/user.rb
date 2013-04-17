@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
 	attr_accessor :password
 	attr_accessible :nom, :email, :password, :password_confirmation
 
-	# Crée automatique l'attribut virtuel 'password_confirmation'.
+	has_many :microposts, :dependent => :destroy
+
+	# Cree automatique l'attribut virtuel 'password_confirmation'.
 	validates :password, :presence		=> true,
 						:confirmation	=> true,
 						:length			=> { :within => 6..40 }
@@ -49,6 +51,9 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
   
   before_save :encrypt_password
   

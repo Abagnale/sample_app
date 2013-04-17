@@ -116,6 +116,15 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+    
+        it "devrait afficher les micro-messages de l'utilisateur" do
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+      get :show, :id => @user
+      response.should have_selector("span.content", :content => mp1.content)
+      response.should have_selector("span.content", :content => mp2.content)
+    end
+    
   end
   
   
@@ -362,6 +371,18 @@ describe UsersController do
       end
     end
   end
+  
+    describe "les associations au micro-message" do
+
+    before(:each) do
+      @user = User.create(@attr)
+    end
+
+    it "devrait avoir un attribut 'microposts'" do
+      @user.should respond_to(:microposts)
+    end
+  end
+
   
   
 end
